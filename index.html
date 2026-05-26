@@ -166,12 +166,27 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #eef2ff;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+      color: var(--navy);
+      text-align: center;
+      flex-direction: column;
+      gap: 8px;
     }
-    .card-img:hover { opacity: 0.8; }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-img .placeholder-text {
+      font-weight: 500;
+    }
+    .card-img:hover { opacity: 0.85; background: #e2e8f0; }
     .service-card h3 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -302,7 +317,7 @@
 
 <nav class="navbar">
   <div class="logo-wrapper">
-    <img src="logo.jpeg" alt="Nstya Digital Solutions Logo" class="logo-img" onerror="this.style.display='none'">
+    <img src="logo.png" alt="Nstya Digital Solutions Logo" class="logo-img" onerror="this.style.display='none'">
     <div class="logo-text">Nstya Digital Solutions</div>
   </div>
   <ul class="nav-links">
@@ -336,31 +351,41 @@
     <div class="services-grid">
       <!-- Website -->
       <div class="service-card">
-        <img id="imgWebsite" src="Website.jpg" class="card-img" alt="Website" title="Click to change">
+        <div class="card-img" id="websiteContainer">
+          <img id="imgWebsite" src="Website.jpg" alt="Website" style="width:100%; height:100%; object-fit:cover;">
+        </div>
         <h3>🌐 Website</h3>
         <p>Modern responsive websites for business & personal brands.</p>
       </div>
       <!-- Document Edit -->
       <div class="service-card">
-        <img id="imgDocument" src="Document Edit.jpg" class="card-img" alt="Document Edit" title="Click to change">
+        <div class="card-img" id="docContainer">
+          <img id="imgDocument" src="Document Edit.jpg" alt="Document Edit" style="width:100%; height:100%; object-fit:cover;">
+        </div>
         <h3>📄 Document Edit</h3>
         <p>Professional formatting for PDF, Word, official docs.</p>
       </div>
       <!-- Letterhead -->
       <div class="service-card">
-        <img id="imgLetterhead" src="latterhade.jpeg" class="card-img" alt="Letterhead" title="Click to change">
+        <div class="card-img" id="letterContainer">
+          <img id="imgLetterhead" src="latterhade.jpeg" alt="Letterhead" style="width:100%; height:100%; object-fit:cover;">
+        </div>
         <h3>✉️ Letterhead</h3>
         <p>Elegant company letterheads with branding.</p>
       </div>
       <!-- Resume CV -->
       <div class="service-card">
-        <img id="imgResume" src="Resume CV.jpg" class="card-img" alt="Resume CV" title="Click to change">
+        <div class="card-img" id="resumeContainer">
+          <img id="imgResume" src="Resume CV.jpg" alt="Resume CV" style="width:100%; height:100%; object-fit:cover;">
+        </div>
         <h3>📋 Resume / CV</h3>
         <p>ATS-friendly, modern resume designs.</p>
       </div>
       <!-- Logo Design -->
       <div class="service-card">
-        <img id="imgLogo" src="Logo design.jpg" class="card-img" alt="Logo design" title="Click to change">
+        <div class="card-img" id="logoContainer">
+          <img id="imgLogo" src="Logo design.jpg" alt="Logo design" style="width:100%; height:100%; object-fit:cover;">
+        </div>
         <h3>🎨 Logo Design</h3>
         <p>Unique, memorable logos for startups.</p>
       </div>
@@ -430,41 +455,70 @@
 <a href="https://wa.me/96560484033" class="whatsapp-float">💬</a>
 
 <script>
-  function setupImageUpload(imgElement) {
+  function setupImageUpload(imgElement, containerId, serviceName) {
     if (!imgElement) return;
-    imgElement.style.cursor = 'pointer';
-    imgElement.addEventListener('click', function(e) {
-      e.stopPropagation();
+    // Function to show placeholder if image fails
+    imgElement.onerror = function() {
+      const container = document.getElementById(containerId);
+      if (container) {
+        container.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; background:#eef2ff; color:#0a2b4e; font-size:0.9rem; gap:8px;">
+          <i class="fas fa-image" style="font-size:2rem;"></i>
+          <span>${serviceName} image not found</span>
+          <span style="font-size:0.7rem;">Click to upload</span>
+        </div>`;
+        container.style.display = 'flex';
+        container.style.alignItems = 'center';
+        container.style.justifyContent = 'center';
+        // Re-attach click to container
+        container.onclick = () => triggerUpload(imgElement);
+      }
+    };
+    
+    function triggerUpload(img) {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
-      input.onchange = function(event) {
-        const file = event.target.files[0];
+      input.onchange = function(e) {
+        const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
-          reader.onload = function(loadEvent) {
-            imgElement.src = loadEvent.target.result;
+          reader.onload = function(ev) {
+            // Restore the img element if placeholder was shown
+            const container = document.getElementById(containerId);
+            if (container) {
+              const newImg = document.createElement('img');
+              newImg.src = ev.target.result;
+              newImg.style.width = '100%';
+              newImg.style.height = '100%';
+              newImg.style.objectFit = 'cover';
+              newImg.style.cursor = 'pointer';
+              container.innerHTML = '';
+              container.appendChild(newImg);
+              // Re-setup onerror and click for new img
+              setupImageUpload(newImg, containerId, serviceName);
+            }
           };
           reader.readAsDataURL(file);
         }
       };
       input.click();
-    });
+    }
+    
+    // Make image clickable
+    imgElement.style.cursor = 'pointer';
+    imgElement.onclick = function(e) {
+      e.stopPropagation();
+      triggerUpload(imgElement);
+    };
   }
 
-  setupImageUpload(document.getElementById('heroImg'));
-  setupImageUpload(document.getElementById('imgWebsite'));
-  setupImageUpload(document.getElementById('imgDocument'));
-  setupImageUpload(document.getElementById('imgLetterhead'));
-  setupImageUpload(document.getElementById('imgResume'));
-  setupImageUpload(document.getElementById('imgLogo'));
-  
-  document.querySelectorAll('.card-img').forEach(img => {
-    if (!img.hasAttribute('data-upload-setup')) {
-      setupImageUpload(img);
-      img.setAttribute('data-upload-setup', 'true');
-    }
-  });
+  // Setup all images with their containers
+  setupImageUpload(document.getElementById('imgWebsite'), 'websiteContainer', 'Website');
+  setupImageUpload(document.getElementById('imgDocument'), 'docContainer', 'Document Edit');
+  setupImageUpload(document.getElementById('imgLetterhead'), 'letterContainer', 'Letterhead');
+  setupImageUpload(document.getElementById('imgResume'), 'resumeContainer', 'Resume / CV');
+  setupImageUpload(document.getElementById('imgLogo'), 'logoContainer', 'Logo Design');
+  setupImageUpload(document.getElementById('heroImg'), 'heroImg', 'Hero');
 </script>
 </body>
 </html>
