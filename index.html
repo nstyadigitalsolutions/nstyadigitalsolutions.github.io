@@ -115,7 +115,10 @@
       width: 500px;
       height: auto;
       object-fit: cover;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
+    .hero-image img:hover { opacity: 0.8; }
     @media (max-width: 768px) {
       .hero-grid { flex-direction: column; text-align: center; }
       .hero-content { text-align: center; }
@@ -165,7 +168,10 @@
       object-fit: cover;
       display: block;
       background: #eef2ff;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
+    .card-img:hover { opacity: 0.8; }
     .service-card h3 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -279,6 +285,16 @@
       box-shadow: 0 6px 16px rgba(0,0,0,0.2);
       z-index: 1000;
     }
+    .image-upload-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 1rem;
+      background: #eef2ff;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+    }
     @media (max-width: 768px) { .navbar { flex-direction: column; } }
   </style>
 </head>
@@ -308,7 +324,8 @@
       <a href="https://wa.me/96560484033" class="btn btn-primary" style="margin-top: 1rem;">💬 Chat on WhatsApp</a>
     </div>
     <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=450&fit=crop" alt="Team working">
+      <img id="heroImg" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=450&fit=crop" alt="Team working - click to change" title="Click to change image">
+      <div class="image-upload-note">✨ Click on any image to replace with your own photo</div>
     </div>
   </div>
 </section>
@@ -317,33 +334,33 @@
   <div class="container">
     <h2 class="section-title">What We Deliver</h2>
     <div class="services-grid">
-      <!-- Website - laptop with code -->
+      <!-- Website -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=200&fit=crop" class="card-img" alt="Website coding">
+        <img id="imgWebsite" src="Website.jpg" class="card-img" alt="Website" title="Click to change">
         <h3>🌐 Website</h3>
         <p>Modern responsive websites for business & personal brands.</p>
       </div>
-      <!-- Document Edit - laptop editing document (no mobile) -->
+      <!-- Document Edit -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=200&fit=crop" class="card-img" alt="Editing document on laptop">
+        <img id="imgDocument" src="Document Edit.jpg" class="card-img" alt="Document Edit" title="Click to change">
         <h3>📄 Document Edit</h3>
         <p>Professional formatting for PDF, Word, official docs.</p>
       </div>
-      <!-- Letterhead - real letterhead paper (not tablet) -->
+      <!-- Letterhead -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=200&fit=crop" class="card-img" alt="Professional company letterhead">
+        <img id="imgLetterhead" src="latterhade.jpeg" class="card-img" alt="Letterhead" title="Click to change">
         <h3>✉️ Letterhead</h3>
         <p>Elegant company letterheads with branding.</p>
       </div>
-      <!-- Resume - CV on laptop -->
+      <!-- Resume CV -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=200&fit=crop" class="card-img" alt="Resume CV">
+        <img id="imgResume" src="Resume CV.jpg" class="card-img" alt="Resume CV" title="Click to change">
         <h3>📋 Resume / CV</h3>
         <p>ATS-friendly, modern resume designs.</p>
       </div>
-      <!-- Logo Design - logo sketch/design process -->
+      <!-- Logo Design -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=200&fit=crop" class="card-img" alt="Logo design sketch">
+        <img id="imgLogo" src="Logo design.jpg" class="card-img" alt="Logo design" title="Click to change">
         <h3>🎨 Logo Design</h3>
         <p>Unique, memorable logos for startups.</p>
       </div>
@@ -412,5 +429,42 @@
 
 <a href="https://wa.me/96560484033" class="whatsapp-float">💬</a>
 
+<script>
+  function setupImageUpload(imgElement) {
+    if (!imgElement) return;
+    imgElement.style.cursor = 'pointer';
+    imgElement.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(loadEvent) {
+            imgElement.src = loadEvent.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      input.click();
+    });
+  }
+
+  setupImageUpload(document.getElementById('heroImg'));
+  setupImageUpload(document.getElementById('imgWebsite'));
+  setupImageUpload(document.getElementById('imgDocument'));
+  setupImageUpload(document.getElementById('imgLetterhead'));
+  setupImageUpload(document.getElementById('imgResume'));
+  setupImageUpload(document.getElementById('imgLogo'));
+  
+  document.querySelectorAll('.card-img').forEach(img => {
+    if (!img.hasAttribute('data-upload-setup')) {
+      setupImageUpload(img);
+      img.setAttribute('data-upload-setup', 'true');
+    }
+  });
+</script>
 </body>
 </html>
