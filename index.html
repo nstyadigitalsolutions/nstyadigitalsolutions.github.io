@@ -141,7 +141,6 @@
       transform: translateX(-50%);
       border-radius: 4px;
     }
-    /* About Section */
     .about-box {
       max-width: 1000px;
       margin: 0 auto;
@@ -220,25 +219,6 @@
       display: inline-block;
       margin-top: 1rem;
     }
-    .faq-grid { max-width: 800px; margin: 0 auto; }
-    .faq-item {
-      background: var(--bg-light);
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-    }
-    .faq-question { font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.5rem; }
-    .whatsapp-faq-link, .whatsapp-request-btn, .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.8rem;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .whatsapp-faq-link { background: #25D366; color: white; font-size: 0.8rem; margin-top: 0.8rem; }
     .request-card {
       max-width: 600px;
       margin: 0 auto;
@@ -247,6 +227,15 @@
       padding: 2rem;
       text-align: center;
       border: 1px solid var(--border);
+    }
+    .whatsapp-request-btn, .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
     }
     .whatsapp-request-btn { background: #25D366; color: white; margin-top: 1rem; }
     .contact-box {
@@ -331,7 +320,6 @@
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
-    <li><a href="#faq">FAQ</a></li>
     <li><a href="#request">Request</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -343,7 +331,7 @@
       <div class="freelancer-badge">✨ Freelancer Agency ✨</div>
       <h1>Professional digital solutions <br><span class="highlight">at minimal prices</span></h1>
       <p>Website, document editing, letterhead, resume, logo design – fast delivery & direct WhatsApp support.</p>
-      <a href="https://wa.me/96560484033" class="btn btn-primary" style="margin-top: 1rem;">💬 Chat on WhatsApp</a>
+      <!-- Hero section mein WhatsApp button hata diya -->
     </div>
     <div class="hero-image">
       <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=450&fit=crop" alt="Team working">
@@ -351,7 +339,7 @@
   </div>
 </section>
 
-<!-- About Section -->
+<!-- About Section (bina WhatsApp button ke) -->
 <section id="about">
   <div class="container">
     <h2 class="section-title">About Nstya Digital Solutions</h2>
@@ -359,7 +347,7 @@
       <p><span class="about-highlight">Nstya Digital Solutions</span> is a freelancer agency dedicated to delivering high-quality digital services at minimal prices. We specialize in website development, document editing, letterhead design, resume writing, and logo creation.</p>
       <p>Our mission is to help businesses and individuals establish a strong online presence without breaking the bank. Every project is handled with professionalism, creativity, and attention to detail. We believe in fast turnaround times, clear communication, and 100% client satisfaction.</p>
       <p>Whether you are a startup, a small business, or a professional looking for a standout resume – we are here to help. Contact us anytime on WhatsApp for a free consultation.</p>
-      <a href="https://wa.me/96560484033" class="btn btn-primary" style="margin-top: 0.5rem;">💬 Chat on WhatsApp</a>
+      <!-- About section se WhatsApp button hata diya -->
     </div>
   </div>
 </section>
@@ -410,25 +398,14 @@
   </div>
 </section>
 
-<section id="faq">
-  <div class="container">
-    <h2 class="section-title">Frequently Asked</h2>
-    <div class="faq-grid">
-      <div class="faq-item">
-        <div class="faq-question">What are your charges?</div>
-        <p>Very minimal and negotiable. Quality work at honest prices. Contact us for a custom quote.</p>
-        <a href="https://wa.me/96560484033?text=Hi%2C%20I%20want%20a%20price%20quote%20for%20a%20service." class="whatsapp-faq-link">💬 Ask on WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- FAQ Section Poori Tarah Hata Di Gayi -->
 
 <section id="request">
   <div class="container">
     <h2 class="section-title">Request a Service</h2>
     <div class="request-card">
       <h3>📋 Need any help?</h3>
-      <p>Click below and tell us your requirement on WhatsApp. We'll reply within minutes.</p>
+      <p>Tell us your requirement on WhatsApp. We'll reply within minutes.</p>
       <a href="https://wa.me/96560484033?text=Hello%2C%20I%20need%20a%20service%3A%20%0A-%20Type%3A%20%0A-%20Details%3A%20%0A-%20Deadline%3A" class="whatsapp-request-btn">💬 Request via WhatsApp</a>
     </div>
   </div>
@@ -456,7 +433,7 @@
   <p>Designed with modern navy blue identity</p>
 </footer>
 
-<!-- WhatsApp Floating Button -->
+<!-- Only Floating WhatsApp Button -->
 <a href="https://wa.me/96560484033" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
   <i class="fab fa-whatsapp"></i>
 </a>
