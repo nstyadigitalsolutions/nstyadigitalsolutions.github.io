@@ -154,6 +154,35 @@
       font-weight: 600;
       color: var(--navy);
     }
+    .about-box .about-sub-heading {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .about-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 1.5rem;
+      text-align: left;
+      display: inline-block;
+    }
+    .about-box ul li {
+      padding: 6px 0;
+      position: relative;
+      padding-left: 24px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-align: left;
+    }
+    .about-box ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--navy);
+      font-weight: 700;
+    }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -352,9 +381,17 @@
   <div class="container">
     <h2 class="section-title">About Nstya EduTech</h2>
     <div class="about-box">
-      <p><span class="about-highlight">Nstya EduTech</span> is a dedicated studio delivering high-quality digital services at minimal prices. We specialize in website development, document editing, letterhead design, resume writing, and logo creation.</p>
-      <p>Our mission is to help businesses and individuals establish a strong online presence without breaking the bank. Every project is handled with professionalism, creativity, and attention to detail. We believe in fast turnaround times, clear communication, and 100% client satisfaction.</p>
-      <p>Whether you are a startup, a small business, or a professional looking for a standout resume – we are here to help. Contact us anytime on WhatsApp for a free consultation.</p>
+      <p><span class="about-highlight">Nstya EduTech</span> is a premier Education Technology and Digital Solutions provider dedicated to bridging the gap between modern technology and education. We specialize in empowering educational institutions and businesses by delivering high-end technical infrastructure and digital services at minimal prices.</p>
+      
+      <div class="about-sub-heading">Our Core Expertise:</div>
+      <ul>
+        <li><strong>Smart School Transformation:</strong> Modernizing classrooms with interactive smart projectors, digital learning tools, and advanced educational setups.</li>
+        <li><strong>ICT & Computer Labs:</strong> Designing and installing complete computer hardware infrastructure and foundational IT training modules for students.</li>
+        <li><strong>Web & Corporate Solutions:</strong> Delivering high-quality website development, professional educational documentation, branding, and customized digital assets.</li>
+      </ul>
+      
+      <div class="about-sub-heading">Our Mission:</div>
+      <p>Our mission is to revolutionize rural and urban education through innovative technology. We are committed to helping schools, colleges, and startups establish a powerful, modern, and highly professional global presence.</p>
     </div>
   </div>
 </section>
