@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Nstya Digital Solutions </title>
+  <title>Nstya EduTech</title>
   <!-- FAVICON - 64x64 image -->
   <link rel="icon" type="image/png" href="genfavicon-64.png">
-  <meta name="description" content="Freelance studio: Website, document editing, letterhead, resume, logo design – professional quality at minimal charges. WhatsApp support.">
+  <meta name="description" content="Website, document editing, letterhead, resume, logo design – professional quality at minimal charges. WhatsApp support.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -101,15 +101,6 @@
       margin: 1.5rem 0;
       color: var(--text-muted);
     }
-    .freelance-badge {
-      display: inline-block;
-      background: #eef2ff;
-      color: var(--navy);
-      padding: 0.4rem 1.2rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
     .hero-image img {
       max-width: 100%;
       border-radius: 32px;
@@ -196,6 +187,25 @@
     .service-card p {
       color: var(--text-muted);
       margin: 0 1.2rem 1.2rem;
+    }
+    .service-card ul {
+      list-style: none;
+      padding: 0 1.2rem 1.2rem;
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .service-card ul li {
+      padding: 4px 0;
+      position: relative;
+      padding-left: 20px;
+    }
+    .service-card ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--navy);
+      font-weight: 700;
     }
     .why-grid {
       display: grid;
@@ -313,8 +323,8 @@
 
 <nav class="navbar">
   <div class="logo-wrapper">
-    <img src="logo.png" alt="Nstya Digital Solutions Logo" class="logo-img" onerror="this.style.display='none'">
-    <div class="logo-text">Nstya Digital Solutions</div>
+    <img src="logo.png" alt="Nstya EduTech Logo" class="logo-img" onerror="this.style.display='none'">
+    <div class="logo-text">Nstya EduTech</div>
   </div>
   <ul class="nav-links">
     <li><a href="#">Home</a></li>
@@ -329,7 +339,7 @@
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-content">
-      <h1>Complete IT & Digital Solutions <br><span class="highlight">for Schools, Businesses & Institutions</span></h1>
+      <h1>Transforming Businesses & <span class="highlight">Elevating Rural Education</span><br>through Smart Technology.</h1>
       <p>Website, document editing, letterhead, resume, logo design – fast delivery & direct WhatsApp support.</p>
     </div>
     <div class="hero-image">
@@ -340,9 +350,9 @@
 
 <section id="about">
   <div class="container">
-    <h2 class="section-title">About Nstya Digital Solutions</h2>
+    <h2 class="section-title">About Nstya EduTech</h2>
     <div class="about-box">
-      <p><span class="about-highlight">Nstya Digital Solutions</span> is a dedicated studio delivering high-quality digital services at minimal prices. We specialize in website development, document editing, letterhead design, resume writing, and logo creation.</p>
+      <p><span class="about-highlight">Nstya EduTech</span> is a dedicated studio delivering high-quality digital services at minimal prices. We specialize in website development, document editing, letterhead design, resume writing, and logo creation.</p>
       <p>Our mission is to help businesses and individuals establish a strong online presence without breaking the bank. Every project is handled with professionalism, creativity, and attention to detail. We believe in fast turnaround times, clear communication, and 100% client satisfaction.</p>
       <p>Whether you are a startup, a small business, or a professional looking for a standout resume – we are here to help. Contact us anytime on WhatsApp for a free consultation.</p>
     </div>
@@ -381,7 +391,11 @@
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop" class="card-img" alt="Smart Class Setup">
         <h3>📚 Smart Class & School IT Setup</h3>
-        <p>Complete installation of projectors, smart boards, computer labs, and digital attendance systems.</p>
+        <ul>
+          <li><strong>Digital Classrooms:</strong> Government schools me projectors aur smart-boards ka setup.</li>
+          <li><strong>ICT & Computer Labs:</strong> Rural schools me computer infrastructure aur basic coding classes.</li>
+          <li><strong>Teacher Digital Training:</strong> Government school ke teachers ko English aur digital tools sikhana.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -430,7 +444,7 @@
 
 <footer>
   <div class="container">
-    <p>&copy; 2026 Nstya Digital Solutions. All rights reserved.</p>
+    <p>&copy; 2026 Nstya EduTech. All rights reserved.</p>
     <p style="margin-top: 0.75rem; font-size: 0.85rem;">
       <a href="#" style="color: #cbd5e6; text-decoration: none;">Privacy Policy</a> | 
       <a href="#" style="color: #cbd5e6; text-decoration: none;">Terms of Service</a> | 
